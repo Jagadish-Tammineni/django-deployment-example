@@ -1,0 +1,20 @@
+
+{% extends 'basic_app/base.html' %}
+{% load static %}
+{% block body_block %} 
+<div class="m-4 p-5 bg-primary">
+    {% if registered %}
+    <h1>Thank you for registering!</h1>
+    {% else %}
+    <h1>Register here!</h1>
+    <h3>Fill Out the form: </h3>
+
+    <form action="{% url 'basic_app:register' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        {{ profile_form.as_p }}
+        <input type="submit" value="Register" class="bg-secondary" name="">
+    </form>
+    {% endif %}
+</div>
+{% endblock %}
